@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\Visual Studio\\TradingService\\TradingService.csproj": {}
+    "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\GitHub\\coin-vault-microservice-trade\\TradingService.csproj": {}
   },
   "projects": {
-    "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\Visual Studio\\TradingService\\TradingService.csproj": {
+    "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\GitHub\\coin-vault-microservice-trade\\TradingService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\Visual Studio\\TradingService\\TradingService.csproj",
+        "projectUniqueName": "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\GitHub\\coin-vault-microservice-trade\\TradingService.csproj",
         "projectName": "TradingService",
-        "projectPath": "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\Visual Studio\\TradingService\\TradingService.csproj",
+        "projectPath": "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\GitHub\\coin-vault-microservice-trade\\TradingService.csproj",
         "packagesPath": "C:\\Users\\robru\\.nuget\\packages\\",
-        "outputPath": "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\Visual Studio\\TradingService\\obj\\",
+        "outputPath": "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\GitHub\\coin-vault-microservice-trade\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\robru\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -90,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

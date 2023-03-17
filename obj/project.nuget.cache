@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MUZWBp4zwbaPvg3PJP/6S/iCGWdmrS0RMmljv3oUaa0lgHXeoOWvFgWvhrpQo8utwcx2RoSRZFzJdgHFQ+5YIg==",
+  "dgSpecHash": "zMGwosZQKEqRj8c0lo43UBx5KMHO0E9qo8tDQJ2RWgsDQ/P+x42jgEDSBUmP+tm1mTBfZ4RZ/sPEjQuqlTrcOg==",
   "success": true,
-  "projectFilePath": "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\Visual Studio\\TradingService\\TradingService.csproj",
+  "projectFilePath": "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\GitHub\\coin-vault-microservice-trade\\TradingService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\robru\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\robru\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
