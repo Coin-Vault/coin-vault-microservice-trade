@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using TradingService.AsyncDataServices;
 using TradingService.Data;
+using TradingService.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,26 +14,39 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(opt => 
-    opt.UseInMemoryDatabase("InMem"));
+if(builder.Environment.IsProduction()) 
+{
+    Console.WriteLine("Using MSSQL Server");
+    builder.Services.AddDbContext<AppDbContext>(opt => 
+        opt.UseSqlServer(builder.Configuration.GetConnectionString("TradesConn")));
+}
+
+if (builder.Environment.IsDevelopment())
+{
+    Console.WriteLine("Using InMem Server");
+    builder.Services.AddDbContext<AppDbContext>(opt => 
+        opt.UseInMemoryDatabase("InMem"));
+}
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddHttpClient<IPortfolioDataClient, HttpPortfolioDataClient>();
+builder.Services.AddSingleton<IMessageBusClient, MessageBusClient>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-PrepDb.PrepPopulation(app);
+PrepDb.PrepPopulation(app, app.Environment.IsProduction());
 
 app.Run();

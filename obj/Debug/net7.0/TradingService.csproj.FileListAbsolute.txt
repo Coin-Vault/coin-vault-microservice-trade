@@ -77,3 +77,5 @@ D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-micro
 D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\obj\Debug\net7.0\TradingService.pdb
 D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\obj\Debug\net7.0\TradingService.genruntimeconfig.cache
 D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\obj\Debug\net7.0\ref\TradingService.dll
+D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\bin\Debug\net7.0\appsettings.Production.json
+D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\bin\Debug\net7.0\RabbitMQ.Client.dll

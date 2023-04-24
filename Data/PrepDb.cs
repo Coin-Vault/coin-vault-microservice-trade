@@ -1,19 +1,33 @@
+using Microsoft.EntityFrameworkCore;
 using TradingService.Models;
 
 namespace TradingService.Data
 {
     public static class PrepDb
     {
-        public static void PrepPopulation(IApplicationBuilder app)
+        public static void PrepPopulation(IApplicationBuilder app, bool isProd)
         {
             using(var serviceScope = app.ApplicationServices.CreateScope()) 
             {
-                SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>());
+                SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>(), isProd);
             }
         }
 
-        private static void SeedData(AppDbContext context)
+        private static void SeedData(AppDbContext context, bool isProd)
         {
+            if(isProd)
+            {
+                try
+                {
+                    Console.WriteLine("Attampting to apply migrations");
+                    context.Database.Migrate();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Could not run migrations: {ex.Message}");
+                }
+            }
+
             if(!context.Trades.Any()) 
             {
                 Console.WriteLine("Seeding Data..."); 
@@ -21,21 +35,18 @@ namespace TradingService.Data
                 context.Trades.AddRange(
                     new Trade() 
                     {
-                        Name = "TEST", 
-                        Amount = "TEST", 
-                        Price = "TEST"
+                        Name = "BITCOIN", 
+                        Amount = 5.0 
                     },
                     new Trade()
                     {
-                        Name = "TEST", 
-                        Amount = "TEST", 
-                        Price = "TEST"
+                        Name = "BITCOIN", 
+                        Amount = 10.0 
                     },
                     new Trade() 
                     {
-                        Name = "TEST", 
-                        Amount = "TEST", 
-                        Price = "TEST"
+                        Name = "BITCOIN", 
+                        Amount = 15.5 
                     }
                 );
 

@@ -10,6 +10,7 @@ namespace TradingService.Profiles
         {
             CreateMap<Trade, TradeReadDto>();
             CreateMap<TradeCreateDto, Trade>();
+            CreateMap<TradeReadDto, TradePublishDto>();
         }
     }
 }

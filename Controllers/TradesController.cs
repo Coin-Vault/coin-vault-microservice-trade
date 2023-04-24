@@ -1,8 +1,10 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using TradingService.AsyncDataServices;
 using TradingService.Data;
 using TradingService.Dtos;
 using TradingService.Models;
+using TradingService.SyncDataServices.Http;
 
 namespace TradingService.Controllers
 {
@@ -12,11 +14,15 @@ namespace TradingService.Controllers
     {
         private readonly ITradeRepo _repository;
         private readonly IMapper _mapper;
+        private readonly IPortfolioDataClient _portfolioDataClient;
+        private readonly IMessageBusClient _IMessageBusClient;
 
-        public TradesController(ITradeRepo repository, IMapper mapper)
+        public TradesController(ITradeRepo repository, IMapper mapper, IPortfolioDataClient portfolioDataClient, IMessageBusClient messageBusClient)
         {
             _repository = repository;
             _mapper = mapper;
+            _portfolioDataClient = portfolioDataClient;
+            _IMessageBusClient = messageBusClient;
         }
 
         [HttpGet]
@@ -42,13 +48,35 @@ namespace TradingService.Controllers
         }
 
         [HttpPost]
-        public ActionResult<TradeReadDto> CreateTrade(TradeCreateDto tradeCreateDto)
+        public async Task<ActionResult<TradeReadDto>> CreateTrade(TradeCreateDto tradeCreateDto)
         {
             var tradeModel = _mapper.Map<Trade>(tradeCreateDto);
             _repository.CreateTrade(tradeModel);
             _repository.SaveChanges();
 
             var tradeReadDto = _mapper.Map<TradeReadDto>(tradeModel);
+
+            try
+            {
+                await _portfolioDataClient.SendTradeToPortfolio(tradeReadDto);
+            }
+            catch(Exception exeption)
+            {
+                Console.WriteLine($"Could not send POST data: {exeption.Message}");
+            }
+
+            try
+            {
+                var tradePublishDto = _mapper.Map<TradePublishDto>(tradeReadDto);
+                tradePublishDto.Price = 25000;
+                tradePublishDto.Event = "Trade_Publish";
+
+                _IMessageBusClient.PublishNewTrade(tradePublishDto);
+            }
+            catch(Exception exeption)
+            {
+                Console.WriteLine($"Could not send RabbitMQ data: {exeption.Message}");
+            }
 
             return CreatedAtRoute(nameof(GetTradeById), new { Id = tradeReadDto.Id}, tradeReadDto);
         }

@@ -8,9 +8,6 @@ namespace TradingService.Dtos
         public string? Name { get; set; }
 
         [Required]
-        public string? Amount { get; set; }
-        
-        [Required]
-        public string? Price { get; set; }
+        public double? Amount { get; set; }
     }
 }
