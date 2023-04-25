@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vFgAp3/qJk+rJNi4pOlTL9/Qi0/qNlBLMEMKPnf2gd3VVT+Sg1hF5hc3aQQamo3+kDIqqPZpeDUmHYQ1tjAKXw==",
+  "dgSpecHash": "nBeh6j9F4tnR+d7Cmywxzp5vIGLrsqAlobsCaQjBDaen9AH0+gYP2qcg09qUHi7/hSOfaed96aAIUJtsSS/xmQ==",
   "success": true,
   "projectFilePath": "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\GitHub\\coin-vault-microservice-trade\\TradingService.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\robru\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\robru\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\robru\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\robru\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.5\\microsoft.aspnetcore.authentication.jwtbearer.7.0.5.nupkg.sha512",
     "C:\\Users\\robru\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.3\\microsoft.aspnetcore.openapi.7.0.3.nupkg.sha512",
     "C:\\Users\\robru\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\robru\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

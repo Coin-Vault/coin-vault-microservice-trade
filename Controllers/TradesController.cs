@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TradingService.AsyncDataServices;
 using TradingService.Data;
@@ -26,6 +27,7 @@ namespace TradingService.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult<IEnumerable<TradeReadDto>> GetTrades()
         {
             Console.WriteLine("Getting Trades");

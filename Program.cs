@@ -1,5 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using TradingService.AsyncDataServices;
+using TradingService.Auth;
 using TradingService.Data;
 using TradingService.SyncDataServices.Http;
 
@@ -32,6 +37,33 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddHttpClient<IPortfolioDataClient, HttpPortfolioDataClient>();
 builder.Services.AddSingleton<IMessageBusClient, MessageBusClient>();
+
+var domain = $"https://{builder.Configuration["Auth0:Domain"]}/";
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>
+{
+    options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}/";
+    options.Audience = builder.Configuration["Auth0:Audience"];
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        NameClaimType = ClaimTypes.NameIdentifier
+    };
+});
+
+builder.Services
+  .AddAuthorization(options =>
+  {
+      options.AddPolicy(
+        "read:messages",
+        policy => policy.Requirements.Add(
+          new HasScopeRequirement("read:messages", domain)
+        )
+      );
+  });
+
+builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
+
 
 var app = builder.Build();
 
