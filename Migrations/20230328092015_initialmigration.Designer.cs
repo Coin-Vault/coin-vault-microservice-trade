@@ -32,9 +32,9 @@ namespace TradingService.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Amount")
+                    b.Property<double>("Amount")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("decimal(18, 1)");
 
                     b.Property<string>("Name")
                         .IsRequired()

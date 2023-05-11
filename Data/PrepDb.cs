@@ -36,17 +36,17 @@ namespace TradingService.Data
                     new Trade() 
                     {
                         Name = "BITCOIN", 
-                        Amount = 5.0 
+                        Amount = (decimal)5.0 
                     },
                     new Trade()
                     {
                         Name = "BITCOIN", 
-                        Amount = 10.0 
+                        Amount = (decimal)10.0 
                     },
                     new Trade() 
                     {
                         Name = "BITCOIN", 
-                        Amount = 15.5 
+                        Amount = (decimal)15.5 
                     }
                 );
 
