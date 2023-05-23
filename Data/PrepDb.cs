@@ -36,16 +36,19 @@ namespace TradingService.Data
                     new Trade() 
                     {
                         Name = "BITCOIN", 
+                        UserId = "google-oauth2|107328215575499709402",
                         Amount = (decimal)5.0 
                     },
                     new Trade()
                     {
-                        Name = "BITCOIN", 
+                        Name = "BITCOIN",
+                        UserId = "google-oauth2|107328215575499709402", 
                         Amount = (decimal)10.0 
                     },
                     new Trade() 
                     {
                         Name = "BITCOIN", 
+                        UserId = "google-oauth2|107328215575499709402",
                         Amount = (decimal)15.5 
                     }
                 );
