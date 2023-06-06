@@ -11,11 +11,16 @@ namespace TradingService.AsyncDataServices
         private readonly IConnection _connection;
         private readonly IModel _channel;
 
-        public MessageBusClient(IConfiguration configuration)
+        private readonly IMessageBusEncryption _messageBusEncryption;
+
+        public MessageBusClient(IConfiguration configuration, IMessageBusEncryption messageBusEncryption)
         {
+            _messageBusEncryption = messageBusEncryption;
+
             _configuartion = configuration;
-            var factory = new ConnectionFactory() { HostName = _configuartion["RabbitMQHost"], 
-                Port = int.Parse(_configuartion["RabbitMQPort"]) };
+            var factory = new ConnectionFactory() { 
+                Uri = new Uri(_configuartion["RabbitMQUri"])
+            };
 
             try
             {
@@ -37,6 +42,8 @@ namespace TradingService.AsyncDataServices
         public void PublishNewTrade(TradePublishDto tradePublishDto)
         {
             var Message = JsonSerializer.Serialize(tradePublishDto);
+
+            Message = _messageBusEncryption.EncryptMessage(_configuartion["MessageEncryptionKey"], Message);
 
             if(_connection.IsOpen)
             {

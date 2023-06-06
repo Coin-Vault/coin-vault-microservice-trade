@@ -14,6 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ITradeRepo, TradeRepo>();    
 
+builder.Services.AddSingleton<IMessageBusEncryption, MessageBusEncyrption>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
