@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddScoped<ITradeRepo, TradeRepo>();    
+builder.Services.AddScoped<ITradeRepo, TradeRepo>();
 
 builder.Services.AddSingleton<IMessageBusEncryption, MessageBusEncyrption>();
 
@@ -21,17 +21,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-if(builder.Environment.IsProduction()) 
+if (builder.Environment.IsProduction())
 {
     Console.WriteLine("Using MSSQL Server");
-    builder.Services.AddDbContext<AppDbContext>(opt => 
+    builder.Services.AddDbContext<AppDbContext>(opt =>
         opt.UseSqlServer(builder.Configuration.GetConnectionString("TradesConn")));
 }
 
 if (builder.Environment.IsDevelopment())
 {
     Console.WriteLine("Using InMem Server");
-    builder.Services.AddDbContext<AppDbContext>(opt => 
+    builder.Services.AddDbContext<AppDbContext>(opt =>
         opt.UseInMemoryDatabase("InMem"));
 }
 
