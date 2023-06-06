@@ -22,8 +22,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+        
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
           
       - name: Lint code
         uses: github/super-linter@v5
@@ -39,9 +40,6 @@ jobs:
           
       - name: Install dependencies
         run: dotnet restore
-        
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
         
       - name: Test
         run: dotnet test --no-restore --verbosity normal
