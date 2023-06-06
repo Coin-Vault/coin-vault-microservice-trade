@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nBeh6j9F4tnR+d7Cmywxzp5vIGLrsqAlobsCaQjBDaen9AH0+gYP2qcg09qUHi7/hSOfaed96aAIUJtsSS/xmQ==",
+  "dgSpecHash": "qYWYcMch81j2W92qG41Ei3uDg29O3ARfl4jMDzUgNCt4He+nNQJYAcuB1jgwpI8pWDugO1q6vU//in2NnLJrFg==",
   "success": true,
   "projectFilePath": "D:\\School\\Fontys ICT\\Jaar 3\\Periode 6\\Individueelproject\\GitHub\\coin-vault-microservice-trade\\TradingService.csproj",
   "expectedPackageFiles": [
@@ -17,7 +17,7 @@
     "C:\\Users\\robru\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.0.1\\microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
     "C:\\Users\\robru\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.3\\microsoft.entityframeworkcore.7.0.3.nupkg.sha512",
     "C:\\Users\\robru\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.3\\microsoft.entityframeworkcore.abstractions.7.0.3.nupkg.sha512",
-    "C:\\Users\\robru\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.3\\microsoft.entityframeworkcore.analyzers.7.0.3.nupkg.sha512",
+    "C:\\Users\\robru\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.5\\microsoft.entityframeworkcore.analyzers.7.0.5.nupkg.sha512",
     "C:\\Users\\robru\\.nuget\\packages\\microsoft.entityframeworkcore.design\\7.0.3\\microsoft.entityframeworkcore.design.7.0.3.nupkg.sha512",
     "C:\\Users\\robru\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\7.0.3\\microsoft.entityframeworkcore.inmemory.7.0.3.nupkg.sha512",
     "C:\\Users\\robru\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.3\\microsoft.entityframeworkcore.relational.7.0.3.nupkg.sha512",

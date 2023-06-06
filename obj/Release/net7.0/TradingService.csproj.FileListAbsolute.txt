@@ -80,3 +80,9 @@ D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-micro
 D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\obj\Release\net7.0\ref\TradingService.dll
 D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\bin\Release\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\bin\Release\net7.0\RabbitMQ.Client.dll
+D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\bin\Release\net7.0\out\web.config
+D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\bin\Release\net7.0\out\appsettings.Development.json
+D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\bin\Release\net7.0\out\appsettings.json
+D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\bin\Release\net7.0\out\appsettings.Production.json
+D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\bin\Release\net7.0\out\TradingService.deps.json
+D:\School\Fontys ICT\Jaar 3\Periode 6\Individueelproject\GitHub\coin-vault-microservice-trade\bin\Release\net7.0\out\TradingService.runtimeconfig.json
