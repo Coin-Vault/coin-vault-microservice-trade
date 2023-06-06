@@ -50,7 +50,7 @@ namespace TradingService.Controllers
             {
                 await _portfolioDataClient.SendTradeToPortfolio(tradeReadDto);
             }
-            catch(Exception exeption)
+            catch (Exception exeption)
             {
                 Console.WriteLine($"Could not send POST data: {exeption.Message}");
             }
@@ -63,7 +63,7 @@ namespace TradingService.Controllers
 
                 _IMessageBusClient.PublishNewTrade(tradePublishDto);
             }
-            catch(Exception exeption)
+            catch (Exception exeption)
             {
                 Console.WriteLine($"Could not send RabbitMQ data: {exeption.Message}");
             }

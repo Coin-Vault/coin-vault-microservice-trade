@@ -11,8 +11,8 @@ namespace TradingService.SyncDataServices.Http
 
         public HttpPortfolioDataClient(HttpClient httpClient, IConfiguration configuration)
         {
-            _httpClient = httpClient;   
-            _configuration = configuration; 
+            _httpClient = httpClient;
+            _configuration = configuration;
         }
 
         public async Task SendTradeToPortfolio(TradeReadDto trade)
@@ -24,11 +24,12 @@ namespace TradingService.SyncDataServices.Http
 
             var repsonse = await _httpClient.PostAsync($"{_configuration["PortfolioService"]}/api/p/trades/", httpContent);
 
-            if(repsonse.IsSuccessStatusCode)
+            if (repsonse.IsSuccessStatusCode)
             {
                 Console.WriteLine("Sync POST to portfolio was successfull");
-            }    
-            else {
+            }
+            else
+            {
                 Console.WriteLine("Sync POST to portfolio was NOT successfull");
             }
         }
