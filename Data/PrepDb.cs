@@ -7,7 +7,7 @@ namespace TradingService.Data
     {
         public static void PrepPopulation(IApplicationBuilder app, bool isProd)
         {
-            using(var serviceScope = app.ApplicationServices.CreateScope()) 
+            using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>(), isProd);
             }
@@ -15,7 +15,7 @@ namespace TradingService.Data
 
         private static void SeedData(AppDbContext context, bool isProd)
         {
-            if(isProd)
+            if (isProd)
             {
                 try
                 {
@@ -28,33 +28,36 @@ namespace TradingService.Data
                 }
             }
 
-            if(!context.Trades.Any()) 
+            if (!context.Trades.Any())
             {
-                Console.WriteLine("Seeding Data..."); 
+                Console.WriteLine("Seeding Data...");
 
                 context.Trades.AddRange(
-                    new Trade() 
+                    new Trade()
                     {
-                        Name = "BITCOIN", 
-                        Amount = (decimal)5.0 
+                        Name = "BITCOIN",
+                        UserId = "google-oauth2|107328215575499709402",
+                        Amount = (decimal)5.0
                     },
                     new Trade()
                     {
-                        Name = "BITCOIN", 
-                        Amount = (decimal)10.0 
+                        Name = "BITCOIN",
+                        UserId = "google-oauth2|107328215575499709402",
+                        Amount = (decimal)10.0
                     },
-                    new Trade() 
+                    new Trade()
                     {
-                        Name = "BITCOIN", 
-                        Amount = (decimal)15.5 
+                        Name = "BITCOIN",
+                        UserId = "google-oauth2|107328215575499709402",
+                        Amount = (decimal)15.5
                     }
                 );
 
                 context.SaveChanges();
             }
-            else 
+            else
             {
-                Console.WriteLine("Already Data (Trades) In the Database..."); 
+                Console.WriteLine("Already Data (Trades) In the Database...");
             }
         }
     }

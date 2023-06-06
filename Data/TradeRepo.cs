@@ -8,12 +8,12 @@ namespace TradingService.Data
 
         public TradeRepo(AppDbContext context)
         {
-            _context = context;       
+            _context = context;
         }
 
         public void CreateTrade(Trade trade)
         {
-            if(trade == null)
+            if (trade == null)
             {
                 throw new ArgumentNullException(nameof(trade));
             }
@@ -21,9 +21,9 @@ namespace TradingService.Data
             _context.Trades.Add(trade);
         }
 
-        public IEnumerable<Trade> GetAllTrades()
+        public IEnumerable<Trade> GetAllTradesByUserId(string userId)
         {
-            return _context.Trades.ToList();
+            return _context.Trades.Where(t => t.UserId == userId);
         }
 
         public Trade GetTradeById(int id)
@@ -33,7 +33,7 @@ namespace TradingService.Data
 
         public bool SaveChanges()
         {
-            return(_context.SaveChanges() >= 0);
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

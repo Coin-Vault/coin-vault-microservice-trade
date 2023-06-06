@@ -26,27 +26,15 @@ namespace TradingService.Controllers
             _IMessageBusClient = messageBusClient;
         }
 
-        [HttpGet]
+        [HttpGet("{userId}", Name = "GetTradesByUserId")]
         [Authorize]
-        public ActionResult<IEnumerable<TradeReadDto>> GetTrades()
+        public ActionResult<IEnumerable<TradeReadDto>> GetTradesByUserId(string userId)
         {
             Console.WriteLine("Getting Trades");
 
-            var trades = _repository.GetAllTrades();
+            var trades = _repository.GetAllTradesByUserId(userId);
 
             return Ok(_mapper.Map<IEnumerable<TradeReadDto>>(trades));
-        }
-
-        [HttpGet("{id}", Name = "GetTradeById")]
-        public ActionResult<TradeReadDto> GetTradeById(int id)
-        {
-            var trade = _repository.GetTradeById(id);
-
-            if (trade != null) {
-                return Ok(_mapper.Map<TradeReadDto>(trade));
-            }
-
-            return NotFound();
         }
 
         [HttpPost]
@@ -62,7 +50,7 @@ namespace TradingService.Controllers
             {
                 await _portfolioDataClient.SendTradeToPortfolio(tradeReadDto);
             }
-            catch(Exception exeption)
+            catch (Exception exeption)
             {
                 Console.WriteLine($"Could not send POST data: {exeption.Message}");
             }
@@ -75,12 +63,12 @@ namespace TradingService.Controllers
 
                 _IMessageBusClient.PublishNewTrade(tradePublishDto);
             }
-            catch(Exception exeption)
+            catch (Exception exeption)
             {
                 Console.WriteLine($"Could not send RabbitMQ data: {exeption.Message}");
             }
 
-            return CreatedAtRoute(nameof(GetTradeById), new { Id = tradeReadDto.Id}, tradeReadDto);
+            return Ok();
         }
     }
 }

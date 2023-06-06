@@ -14,8 +14,11 @@ namespace TradingService.AsyncDataServices
         public MessageBusClient(IConfiguration configuration)
         {
             _configuartion = configuration;
-            var factory = new ConnectionFactory() { HostName = _configuartion["RabbitMQHost"], 
-                Port = int.Parse(_configuartion["RabbitMQPort"]) };
+            var factory = new ConnectionFactory()
+            {
+                HostName = _configuartion["RabbitMQHost"],
+                Port = int.Parse(_configuartion["RabbitMQPort"])
+            };
 
             try
             {
@@ -27,23 +30,24 @@ namespace TradingService.AsyncDataServices
                 _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
 
                 Console.WriteLine("Connected to RabbitMQ messagebus");
-            }   
-            catch(Exception exeption)
+            }
+            catch (Exception exeption)
             {
                 Console.WriteLine($"Could not connect to RabbitMQ messagebus: {exeption.Message}");
-            } 
+            }
         }
 
         public void PublishNewTrade(TradePublishDto tradePublishDto)
         {
             var Message = JsonSerializer.Serialize(tradePublishDto);
 
-            if(_connection.IsOpen)
+            if (_connection.IsOpen)
             {
                 Console.WriteLine("RabbitMQ connection open, sending message");
                 SendMessage(Message);
             }
-            else {
+            else
+            {
                 Console.WriteLine("RabbitMQ connection is closed, not sending");
             }
         }
@@ -52,7 +56,7 @@ namespace TradingService.AsyncDataServices
         {
             var body = Encoding.UTF8.GetBytes(message);
 
-            _channel.BasicPublish(exchange: "trigger", 
+            _channel.BasicPublish(exchange: "trigger",
                 routingKey: "",
                 basicProperties: null,
                 body: body);
@@ -60,10 +64,10 @@ namespace TradingService.AsyncDataServices
             Console.WriteLine($"Published {message} to the portfolio service");
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
             Console.WriteLine("RabbitMQ messagebus disposed");
-            if(_channel.IsOpen)
+            if (_channel.IsOpen)
             {
                 _channel.Close();
                 _connection.Close();
@@ -73,6 +77,6 @@ namespace TradingService.AsyncDataServices
         private void RabbitMQ_ConnectionShutdown(object sender, ShutdownEventArgs e)
         {
             Console.WriteLine("RabbitMQ was shutdown");
-        } 
+        }
     }
 }
