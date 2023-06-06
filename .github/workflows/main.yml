@@ -22,9 +22,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
           
       - name: Lint code
         uses: github/super-linter@v5
