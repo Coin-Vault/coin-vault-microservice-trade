@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.Text.Json;
 using RabbitMQ.Client;
@@ -7,7 +8,7 @@ namespace TradingService.AsyncDataServices
 {
     public class MessageBusClient : IMessageBusClient
     {
-        private readonly IConfiguration _configuartion;
+        private readonly IConfiguration _configuration;
         private readonly IConnection _connection;
         private readonly IModel _channel;
 
@@ -17,10 +18,10 @@ namespace TradingService.AsyncDataServices
         {
             _messageBusEncryption = messageBusEncryption;
 
-            _configuartion = configuration;
+            _configuration = configuration;
             var factory = new ConnectionFactory()
             {
-                Uri = new Uri(_configuartion["RabbitMQUri"])
+                Uri = new Uri(_configuration["RabbitMQUri"])
             };
 
             try
@@ -32,24 +33,24 @@ namespace TradingService.AsyncDataServices
 
                 _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
 
-                Console.WriteLine("Connected to RabbitMQ messagebus");
+                Console.WriteLine("Connected to RabbitMQ message bus");
             }
-            catch (Exception exeption)
+            catch (Exception exception)
             {
-                Console.WriteLine($"Could not connect to RabbitMQ messagebus: {exeption.Message}");
+                Console.WriteLine($"Could not connect to RabbitMQ message bus: {exception.Message}");
             }
         }
 
         public void PublishNewTrade(TradePublishDto tradePublishDto)
         {
-            var Message = JsonSerializer.Serialize(tradePublishDto);
+            var message = JsonSerializer.Serialize(tradePublishDto);
 
-            Message = _messageBusEncryption.EncryptMessage(_configuartion["MessageEncryptionKey"], Message);
+            message = _messageBusEncryption.EncryptMessage(_configuration["MessageEncryptionKey"], message);
 
             if (_connection.IsOpen)
             {
                 Console.WriteLine("RabbitMQ connection open, sending message");
-                SendMessage(Message);
+                SendMessage(message, "microservice1");
             }
             else
             {
@@ -57,12 +58,12 @@ namespace TradingService.AsyncDataServices
             }
         }
 
-        private void SendMessage(string message)
+        private void SendMessage(string message, string routingKey)
         {
             var body = Encoding.UTF8.GetBytes(message);
 
             _channel.BasicPublish(exchange: "trigger",
-                routingKey: "",
+                routingKey: routingKey,
                 basicProperties: null,
                 body: body);
 
@@ -71,7 +72,7 @@ namespace TradingService.AsyncDataServices
 
         public void Dispose()
         {
-            Console.WriteLine("RabbitMQ messagebus disposed");
+            Console.WriteLine("RabbitMQ message bus disposed");
             if (_channel.IsOpen)
             {
                 _channel.Close();

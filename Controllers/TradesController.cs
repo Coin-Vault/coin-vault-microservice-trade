@@ -26,8 +26,8 @@ namespace TradingService.Controllers
             _IMessageBusClient = messageBusClient;
         }
 
-        [HttpGet("{userId}", Name = "GetTradesByUserId")]
         [Authorize]
+        [HttpGet("{userId}", Name = "GetTradesByUserId")]
         public ActionResult<IEnumerable<TradeReadDto>> GetTradesByUserId(string userId)
         {
             Console.WriteLine("Getting Trades");
@@ -37,6 +37,7 @@ namespace TradingService.Controllers
             return Ok(_mapper.Map<IEnumerable<TradeReadDto>>(trades));
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<TradeReadDto>> CreateTrade(TradeCreateDto tradeCreateDto)
         {
