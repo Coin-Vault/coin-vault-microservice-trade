@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddScoped<ITradeRepo, TradeRepo>();
+builder.Services.AddSingleton<IMessageBusEncryption, MessageBusEncyrption>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -56,16 +57,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     };
 });
 
-builder.Services
-  .AddAuthorization(options =>
-  {
-      options.AddPolicy(
-        "read:messages",
-        policy => policy.Requirements.Add(
-          new HasScopeRequirement("read:messages", domain)
-        )
-      );
-  });
+builder.Services.AddAuthorization();
 
 builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 

@@ -22,16 +22,16 @@ namespace TradingService.SyncDataServices.Http
                 Encoding.UTF8,
                 "application/json");
 
-            var repsonse = await _httpClient.PostAsync($"{_configuration["PortfolioService"]}/api/p/trades/", httpContent);
+            //var repsonse = await _httpClient.PostAsync($"{_configuration["PortfolioService"]}/api/p/trades/", httpContent);
 
-            if (repsonse.IsSuccessStatusCode)
-            {
-                Console.WriteLine("Sync POST to portfolio was successfull");
-            }
-            else
-            {
-                Console.WriteLine("Sync POST to portfolio was NOT successfull");
-            }
+            // if (repsonse.IsSuccessStatusCode)
+            // {
+            //     Console.WriteLine("Sync POST to portfolio was successfull");
+            // }
+            // else
+            // {
+            //     Console.WriteLine("Sync POST to portfolio was NOT successfull");
+            // }
         }
     }
 }
